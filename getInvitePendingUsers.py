@@ -2,12 +2,12 @@ import requests
 import csv
 import os
 import time
+import sys
 
 
 def get_all(request, headers):
     users = []
     users.extend(request.json()['items'])
-    print(users)
     while request.links:
         request = requests.get(request.links['next']['url'], headers=headers)
         users.extend(request.json()['items'])
@@ -33,7 +33,15 @@ def filter_users(users):
 
 def write_to_csv(users):
     headers = ['firstName', 'lastName', 'displayName', 'status', 'email', 'invitePending']
-    with open(os.path.expanduser("~/Desktop/Invite_Pending_users.csv"), 'w') as out:
+    if sys.platform == 'darwin':
+        path = os.path.expanduser("~/Desktop/Invite_Pending_users.csv")
+    elif sys.platform == 'Windows':
+        path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        path = path + '/Invite_Pending_users.csv'
+    else:
+        path = 'Invite_Pending_users.csv'
+
+    with open(path, 'w') as out:
         writer = csv.DictWriter(out, headers, extrasaction='ignore')
         writer.writeheader()
         for user in users:
@@ -53,7 +61,7 @@ if __name__ == "__main__":
     filtered_users = filter_users(all_users)
     try:
         write_to_csv(filtered_users)
-        print("Successfully created CSV file at ~/Desktop/Invite_Pending_Users.csv")
+        print("Successfully created CSV file on your Desktop named Invite_Pending_Users.csv")
     except Exception as e:
         print('Error occurred while writing to file')
         print('Error: {}'.format(e))
