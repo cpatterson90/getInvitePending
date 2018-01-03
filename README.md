@@ -12,7 +12,7 @@ Pull all users from Spark Org and find users in invite pending state and write t
 1) Download the getInvitePendingUsers.py file to your computer.
 2) On Mac, launch 'Terminal.app'. For Windows, open your Python interpreter.
 3) Issue the following command to run the script:  python getInvitePendingUsers.py
-    - Mac Example: python ~/Desktop/getInvitePendingUsers.py
-    - Windows Example: C:\>python C:\getInvitePendingUsers
+    - Mac Example: ```python ~/Desktop/getInvitePendingUsers.py```
+    - Windows Example: ```python C:\getInvitePendingUsers.py```
 
   
