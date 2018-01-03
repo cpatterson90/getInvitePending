@@ -2,8 +2,7 @@
 Pull all users from Spark Org and find users in invite pending state and write those users to a CSV file
 
 ## Requirements:
-- Must be run on a Mac or Windows
-- Must be run with the authorization token from a Spark Admin user. Authorization token can be found by navigating to https://developer.ciscospark.com > Logging in > Clicking on user avatar picture at the top right. This will show your authorization token. Copy this and use it to run the application. 
+- Must be run with the authorization token from a Spark Admin user. Authorization token can be found by navigating to https://developer.ciscospark.com > Logging in > Clicking on user avatar picture at the top right. This will show your authorization token. Copy this and use it to run the application.
 - The python requests library must be installed. To do this you must install the package using pip using the command 'pip install requests'
     - Instructions on using pip on Windows: https://python-forum.io/Thread-Basic-Part-1-Python-3-6-and-pip-installation-under-Windows
 
