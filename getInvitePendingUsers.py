@@ -40,7 +40,8 @@ def write_to_csv(users):
         path = path + '/Invite_Pending_users.csv'
     else:
         path = 'Invite_Pending_users.csv'
-
+    print('Detected system platform: {}'.format(sys.platform))
+    print('Writing file to destination: {}'.format(path))
     with open(path, 'w') as out:
         writer = csv.DictWriter(out, headers, extrasaction='ignore')
         writer.writeheader()
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     filtered_users = filter_users(all_users)
     try:
         write_to_csv(filtered_users)
-        print("Successfully created CSV file on your Desktop named Invite_Pending_Users.csv")
+        print("Successfully created CSV file named Invite_Pending_Users.csv")
     except Exception as e:
         print('Error occurred while writing to file')
         print('Error: {}'.format(e))
