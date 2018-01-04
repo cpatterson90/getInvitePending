@@ -12,7 +12,7 @@ def get_all(request, headers):
         request = requests.get(request.links['next']['url'], headers=headers)
         users.extend(request.json()['items'])
         print('Found {} users'.format(len(users)))
-        time.sleep(0.1)
+        time.sleep(0.05)
     return users
 
 
