@@ -11,6 +11,7 @@ def get_all(request, headers):
     while request.links:
         request = requests.get(request.links['next']['url'], headers=headers)
         users.extend(request.json()['items'])
+        print('Found {} users'.format(len(users)))
         time.sleep(0.1)
     return users
 
@@ -20,6 +21,7 @@ def get_users(auth):
     headers = {'Authorization': 'Bearer {}'.format(auth)}
     r = requests.get(url, headers=headers)
     users = get_all(r, headers)
+    print('Found {} total users.'.format(len(users)))
     return users
 
 
