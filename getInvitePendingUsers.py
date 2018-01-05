@@ -1,7 +1,6 @@
 import requests
 import csv
 import os
-import time
 import sys
 
 
@@ -12,7 +11,6 @@ def get_all(request, headers):
         request = requests.get(request.links['next']['url'], headers=headers)
         users.extend(request.json()['items'])
         print('Found {} users'.format(len(users)))
-        time.sleep(0.05)
     return users
 
 
@@ -37,14 +35,14 @@ def write_to_csv(users):
     headers = ['firstName', 'lastName', 'displayName', 'status', 'email', 'invitePending']
     if sys.platform == 'darwin':
         path = os.path.expanduser("~/Desktop/Invite_Pending_users.csv")
-    elif sys.platform == 'Windows':
+    elif sys.platform == 'win32':
         path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
         path = path + '/Invite_Pending_users.csv'
     else:
         path = 'Invite_Pending_users.csv'
     print('Detected system platform: {}'.format(sys.platform))
     print('Writing file to destination: {}'.format(path))
-    with open(path, 'w') as out:
+    with open(path, 'w', encoding='utf-8') as out:
         writer = csv.DictWriter(out, headers, extrasaction='ignore')
         writer.writeheader()
         for user in users:
